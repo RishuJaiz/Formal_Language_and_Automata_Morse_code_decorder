@@ -1,0 +1,14 @@
+// Morse Code Decoder PDA
+digraph {
+	rankdir=LR size="10,5"
+	node [color=lightgrey fontname=Helvetica fontsize=12 style=filled]
+	edge [fontname=Helvetica fontsize=10]
+	q0 [label="Start: Await Input" shape=circle]
+	q1 [label="Accumulate: Read \".\" or \"-\"" shape=circle]
+	q2 [label="Decode: Output Letter" shape=doublecircle]
+	q0 -> q1 [label="On \".\" or \"-\" / Push to stack"]
+	q1 -> q1 [label="On \".\" or \"-\" / Push to stack"]
+	q1 -> q2 [label="On \" \" / Pop & Decode"]
+	q1 -> q2 [label="On \"/\" / Pop, Decode, Output space"]
+	q2 -> q1 [label="On next symbol (reset for new input)"]
+}
